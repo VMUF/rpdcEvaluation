@@ -27,6 +27,7 @@ export const Form = styled.form`
   flex-direction: column;
   gap: 3rem;
   padding: 5rem 0;
+  z-index: 900;
 `;
 
 export const DivQuestion = styled.div`
@@ -35,6 +36,7 @@ export const DivQuestion = styled.div`
   padding: 0.5rem 1rem;
   font-size: 1.3rem;
   text-transform: uppercase;
+  z-index: 999;
 `;
 export const DivCenter = styled.div`
   position: absolute;
