@@ -184,12 +184,14 @@ calc(var(--glow-y, -99999px) - var(--glow-top, 0px)), #000000 1%, transparent 50
   flex-direction: column;
   gap: 3rem;
   padding: 5rem 0;
+  z-index: 900;
 `,ie=Le.div`
   display: flex;
   gap: 1rem;
   padding: 0.5rem 1rem;
   font-size: 1.3rem;
   text-transform: uppercase;
+  z-index: 999;
 `,v1=Le.div`
   position: absolute;
   top: 0;
