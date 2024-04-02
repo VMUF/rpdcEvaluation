@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import EvaluationForm from "./pages/EvaluationForm";
 import Button from "./ui/Button";
@@ -10,7 +14,11 @@ import Landing from "./pages/Landing";
 
 const router = createBrowserRouter([
   {
-    path: "/rpdcEvaluation/home",
+    index: "/rpdcEvaluation/",
+    element: <Navigate replace to={"/rpdcEvaluation/home"} />,
+  },
+  {
+    path: "/rpdcEvaluation",
     element: <Home />,
   },
   { path: "/rpdcEvaluation/Evalform", element: <EvaluationForm /> },
