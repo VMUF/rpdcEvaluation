@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input[type="checkbox"]:checked + label::before {
+  content: "\002714";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="radio"]:checked + label::before {
+  content: "\1F7AE";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: green;
+}
