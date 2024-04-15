@@ -21,7 +21,11 @@ export default function Home() {
   const { dark } = useDarkMode();
   const navigate = useNavigate();
   const [check, setCheck] = useState(false);
-
+  fetch("https://city-api-nbzp.onrender.com/cities/73930385", {
+    method: "DELETE",
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data));
   return (
     <>
       <GlowCapture>

@@ -16,11 +16,12 @@ import {
 
 import Tilt from "react-parallax-tilt";
 import useDarkMode from "../hook/useDarkMode";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function EvaluationForm() {
   const { dark } = useDarkMode();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [accessbility, setAccessibility] = useState("");
   const [adequatePersonnel, setAdequatePersonnel] = useState("");
@@ -42,6 +43,7 @@ export default function EvaluationForm() {
   const handlesetComment = (e) => setComment(e.target.value);
 
   async function handleFormSubmit(e) {
+    setIsLoading(true);
     e.preventDefault();
 
     if (
@@ -52,6 +54,8 @@ export default function EvaluationForm() {
       !attendWithPromptness
     )
       return;
+    const dateToday = new Date();
+    dateToday.setDate(dateToday.getDate());
 
     const newData = {
       accessbility,
@@ -61,7 +65,7 @@ export default function EvaluationForm() {
       attendWithPromptness,
       id: crypto.randomUUID(),
       year: new Date().getFullYear(),
-      month: new Date().toLocaleDateString(),
+      month: dateToday.toISOString(),
       comment,
     };
     await createEvaluation(newData);
@@ -72,6 +76,7 @@ export default function EvaluationForm() {
     setAttendWithPromptness("");
     setComment("");
     navigate("/rpdcEvaluation/finish");
+    setIsLoading(false);
   }
 
   return (
@@ -375,7 +380,16 @@ export default function EvaluationForm() {
           </DivQuestion>
         </ContainerBox>
 
-        {dark ? <DarkButtons>Submit</DarkButtons> : <Buttons>Submit</Buttons>}
+        {dark ? (
+          <DarkButtons disabled={isLoading}>
+            {isLoading ? "Submitting..." : "Submit"}
+          </DarkButtons>
+        ) : (
+          <Buttons disabled={isLoading}>
+            {" "}
+            {isLoading ? "Submitting..." : "Submit"}
+          </Buttons>
+        )}
       </Form>
     </>
   );
